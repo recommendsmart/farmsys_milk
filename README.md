@@ -1,2 +1,2 @@
 # farmsys_milk
-farmsys_milk feature
+farmsys_milk module
