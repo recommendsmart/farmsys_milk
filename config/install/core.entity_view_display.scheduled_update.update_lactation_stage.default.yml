@@ -2,45 +2,23 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
-    - field.field.node.milk.body
-    - field.field.node.milk.field_milk_quantity
-    - field.field.node.milk.field_profile
-    - node.type.milk
+    - field.field.scheduled_update.update_lactation_stage.field_lactation_stage
+    - scheduled_updates.scheduled_update_type.update_lactation_stage
   module:
     - dynamic_entity_reference
-    - fences
-    - physical
-    - text
+    - options
     - user
-id: node.milk.teaser
-targetEntityType: node
-bundle: milk
-mode: teaser
+id: scheduled_update.update_lactation_stage.default
+targetEntityType: scheduled_update
+bundle: update_lactation_stage
+mode: default
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 9
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
-  field_milk_quantity:
-    type: physical_measurement_default
-    weight: 8
+  field_lactation_stage:
+    type: dynamic_entity_reference_entity_view
+    weight: 3
     region: content
     label: above
-    settings: {  }
-    third_party_settings: {  }
-  field_profile:
-    type: dynamic_entity_reference_entity_view
-    weight: 10
-    region: content
-    label: visually_hidden
     settings:
-      profile:
-        view_mode: small
       activity:
         view_mode: default
         link: false
@@ -119,6 +97,9 @@ content:
       pm_thread_delete_time:
         view_mode: default
         link: false
+      profile:
+        view_mode: default
+        link: false
       scheduled_update:
         view_mode: default
         link: false
@@ -137,71 +118,29 @@ content:
       vote_result:
         view_mode: default
         link: false
-    third_party_settings:
-      fences:
-        fences_field_tag: div
-        fences_field_classes: ''
-        fences_field_item_tag: div
-        fences_field_item_classes: ''
-        fences_label_tag: div
-        fences_label_classes: ''
-  flag_follow_content:
-    weight: 6
+    third_party_settings: {  }
+  status:
+    label: inline
+    type: list_default
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
-  groups:
+  update_timestamp:
     label: above
-    weight: 0
-    region: content
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  groups_type_closed_group:
-    label: above
-    weight: 1
-    region: content
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  groups_type_course_advanced:
-    label: above
+    type: timestamp
     weight: 2
     region: content
     settings:
-      link: true
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
     third_party_settings: {  }
-    type: entity_reference_label
-  groups_type_course_basic:
-    label: above
-    weight: 3
-    region: content
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  groups_type_open_group:
-    label: above
-    weight: 4
-    region: content
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  groups_type_public_group:
-    label: above
-    weight: 5
-    region: content
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  links:
-    weight: 7
+  user_id:
+    label: inline
+    type: author
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  private_message_link: true
+hidden: {  }
